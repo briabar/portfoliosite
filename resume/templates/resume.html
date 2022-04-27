@@ -7,9 +7,31 @@
 {% for section in resume.section_set.all %}
 <h3>{{ section.name }}</h3>
     {% for experience in section.education_experience_set.all|dictsortreversed:"end_date" %}
-        <strong>{{ experience.experience_name }} | {{ experience.details }}</strong><br>
+        <strong>{{ experience.experience_name }} | {{ experience.details }}</strong> <strong class="right"> {{ experience.start_date|date:"M Y - " }}{{ experience.end_date|date:"M Y" }} </strong>
+        <ul class="detail-box">
+        {% for detail in experience.detail_set.all %}
+            <li>{{ detail.description }}</li>
+            {% for skill in detail.skillused_set.all %}
+                <em>{{ skill.name }},</em>
+            {% endfor %}
+        {% endfor %}
+       </ul>
     {% endfor %}
 
+    <div class="skill-container">
+    {% for skill in section.skill_set.all %}
+       <div class="skill-box">{{ skill.skill_name }}</div>
+    {% endfor %}
+    </div>
+
+    {% for project in section.project_set.all %}
+        <strong><a href="{{ project.href }}">{{ project.name }}, {{ project.description }}</a></strong><br>
+        {% for tech in project.technology_set.all %}
+            <em>{{ tech.name }},</em>
+        {% endfor %}
+        <br>
+    {% endfor %}
+    
 {% endfor %}
 
 

@@ -42,8 +42,9 @@ class Education_Experience(models.Model):
         return self.experience_name
 
 class Detail(models.Model):
-    description = models.CharField(max_length=100)
+    description = models.CharField(max_length=300)
     experience = models.ForeignKey(Education_Experience, on_delete=models.CASCADE)
+    
     
     def __str__(self):
         return self.description
@@ -52,6 +53,7 @@ class Project(models.Model):
     name = models.CharField(max_length=100)
     href = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE, null=True)
     def __str__(self):
         return self.name
 
