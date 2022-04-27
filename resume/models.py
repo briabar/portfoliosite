@@ -5,6 +5,7 @@ class Resume(models.Model):
     name = models.CharField(max_length=100)
     date= models.DateField()
     title= models.CharField(max_length=100)
+    summary = models.CharField(max_length=500, blank=True)
 
     def __str__(self):
         return self.name

@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% for resume in resumes %}
 <h1>{{ resume.title }}</h1>
+<p>{{ resume.summary }}</p>
+
+{% for section in resume.section_set.all %}
+<h3>{{ section.name }}</h3>
+    {% for experience in section.education_experience_set.all|dictsortreversed:"end_date" %}
+        <strong>{{ experience.experience_name }} | {{ experience.details }}</strong><br>
+    {% endfor %}
+
 {% endfor %}
+
+
 {% endblock %}

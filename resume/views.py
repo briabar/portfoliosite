@@ -4,9 +4,8 @@ from .models import Resume, Link, Section, Skill, Education_Experience, Detail, 
 # Define the home view
 
 def home(request):
-    resumes = Resume.objects.all()
-    print(resumes.values_list())
-    return render(request, 'resume.html', {'resumes': resumes})
+    resume = Resume.objects.get(name='Brian Baron')
+    return render(request, 'resume.html', {'resume': resume})
 
 def projects(request):
   return render(request, 'projects.html')
