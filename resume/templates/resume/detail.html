@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="{% url 'add_section' resume.id %}" method="post">
+    {% csrf_token %}
+    {{ section_form.as_p }}
+    <input type="submit" class="btn" value="Add Section">
+  </form>
+  {% endblock %}

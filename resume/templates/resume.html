@@ -5,14 +5,14 @@
 <p>{{ resume.summary }}</p>
 
 {% for section in resume.section_set.all %}
-<h3>{{ section.name }}</h3>
+<h3>{{ section.name }}<a href="{% url 'section_delete' section.id %}">Delete</a></h3>
     {% for experience in section.education_experience_set.all|dictsortreversed:"end_date" %}
-        <strong>{{ experience.experience_name }} | {{ experience.details }}</strong> <strong class="right"> {{ experience.start_date|date:"M Y - " }}{{ experience.end_date|date:"M Y" }} </strong>
+        <strong>{{ experience.experience_name }} | {{ experience.details }}</strong> <strong class="right"> {{ experience.start_date|date:"M Y - " }}{{ experience.end_date|date:"M Y" }} <a href="{% url 'experience_delete' experience.id %}">Delete</a></strong>
         <ul class="detail-box">
         {% for detail in experience.detail_set.all %}
-            <li>{{ detail.description }}</li>
+            <li>{{ detail.description }}<a href="{% url 'detail_delete' detail.id %}"> Delete</a></li> 
             {% for skill in detail.skillused_set.all %}
-                <em>{{ skill.name }},</em>
+                <em>{{ skill.name }},</em><a href="{% url 'skill_used_delete' skill.id %}">-</a>
             {% endfor %}
         {% endfor %}
        </ul>
@@ -20,19 +20,22 @@
 
     <div class="skill-container">
     {% for skill in section.skill_set.all %}
-       <div class="skill-box">{{ skill.skill_name }}</div>
+       <div class="skill-box">{{ skill.skill_name }}<a href="{% url 'skill_delete' skill.id %}">-</a></div>
     {% endfor %}
     </div>
 
     {% for project in section.project_set.all %}
-        <strong><a href="{{ project.href }}">{{ project.name }}, {{ project.description }}</a></strong><br>
+        <strong><a href="{{ project.href }}">{{ project.name }}, {{ project.description }}</a></strong><a href="{% url 'project_delete' project.id %}">Delete</a><br>
         {% for tech in project.technology_set.all %}
-            <em>{{ tech.name }},</em>
+            <em>{{ tech.name }},</em><a href="{% url 'technology_delete' tech.id %}">-</a>
         {% endfor %}
         <br>
     {% endfor %}
     
 {% endfor %}
 
+<a href="{% url 'add_section' resume.id %}">Add a Section</a>
+
+<a href="{% url 'resume_create' %}">Add a New Resume</a>
 
 {% endblock %}
