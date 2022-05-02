@@ -52,7 +52,7 @@ class Education_Experience(models.Model):
         return self.experience_name
 
     def get_absolute_url(self):
-       return reverse('detail', kwargs={'experience_id': self.id})
+       return reverse('detail', kwargs={'education_experience_id': self.id})
 
 class Detail(models.Model):
     description = models.CharField(max_length=300)

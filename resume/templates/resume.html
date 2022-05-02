@@ -5,9 +5,9 @@
 <p>{{ resume.summary }}</p>
 
 {% for section in resume.section_set.all %}
-<h3>{{ section.name }}<a href="{% url 'section_delete' section.id %}">Delete</a></h3>
+<h3>{{ section.name }}<a href="{% url 'section_delete' section.id %}"> Delete</a><a href="{% url 'section_update' section.id %}"> Edit</a></h3>
     {% for experience in section.education_experience_set.all|dictsortreversed:"end_date" %}
-        <strong>{{ experience.experience_name }} | {{ experience.details }}</strong> <strong class="right"> {{ experience.start_date|date:"M Y - " }}{{ experience.end_date|date:"M Y" }} <a href="{% url 'experience_delete' experience.id %}">Delete</a></strong>
+        <strong>{{ experience.experience_name }} | {{ experience.details }}</strong> <strong class="right"> {{ experience.start_date|date:"M Y - " }}{{ experience.end_date|date:"M Y" }}  <!--<a href="{% url 'education_experience_delete' experience.id %}">Delete</a> --></strong>
         <ul class="detail-box">
         {% for detail in experience.detail_set.all %}
             <li>{{ detail.description }}<a href="{% url 'detail_delete' detail.id %}"> Delete</a></li> 
@@ -34,7 +34,7 @@
     
 {% endfor %}
 
-<a href="{% url 'add_section' resume.id %}">Add a Section</a>
+<a href="{% url 'section_create' %}">Add a Section</a>
 
 <a href="{% url 'resume_create' %}">Add a New Resume</a>
 
