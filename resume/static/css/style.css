@@ -8,3 +8,8 @@ body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
+
+* {
+  border: solid black 1px;
+  /* background-color: aquamarine; */
+}

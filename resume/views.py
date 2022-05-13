@@ -42,6 +42,11 @@ class EducationExperienceDelete(DeleteView):
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
+class EducationExperienceCreate(CreateView):
+    model = Education_Experience
+    fields = '__all__'
+    success_url = '/'
+
 class ResumeCreate(CreateView):
     model = Resume
     fields = '__all__'
@@ -49,6 +54,26 @@ class ResumeCreate(CreateView):
 
 class SectionCreate(CreateView):
     model = Section
+    fields = '__all__'
+    success_url = '/'
+
+class DetailCreate(CreateView):
+    model = Detail
+    fields = '__all__'
+    success_url = '/'
+
+class SkillUsedCreate(CreateView):
+    model = SkillUsed
+    fields = '__all__'
+    success_url = '/'
+
+class SkillUsedUpdate(UpdateView):
+    model = SkillUsed
+    fields = '__all__'
+    success_url = '/'
+
+class EducationExperienceUpdate(UpdateView):
+    model = Education_Experience
     fields = '__all__'
     success_url = '/'
 

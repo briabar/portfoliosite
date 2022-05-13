@@ -4,19 +4,25 @@
 <h1>{{ resume.title }}</h1>
 <p>{{ resume.summary }}</p>
 
-{% for section in resume.section_set.all %}
+{% for section in resume.section_set.all %}  <!-- SECTION has create, edit, delete  -->
 <h3>{{ section.name }}<a href="{% url 'section_delete' section.id %}"> Delete</a><a href="{% url 'section_update' section.id %}"> Edit</a></h3>
-    {% for experience in section.education_experience_set.all|dictsortreversed:"end_date" %}
-        <strong>{{ experience.experience_name }} | {{ experience.details }}</strong> <strong class="right"> {{ experience.start_date|date:"M Y - " }}{{ experience.end_date|date:"M Y" }}  <!--<a href="{% url 'education_experience_delete' experience.id %}">Delete</a> --></strong>
+    {% for experience in section.education_experience_set.all|dictsortreversed:"end_date" %} <!-- education_experience has create, delete  -->
+        <strong>{{ experience.experience_name }} | {{ experience.details }}</strong> <strong class="right"> {{ experience.start_date|date:"M Y - " }}{{ experience.end_date|date:"M Y" }}  
+            <a href="{% url 'education_experience_delete' experience.id %}">Delete</a>
+        
+        </strong><a href="{% url 'education_experience_update' experience.id %}">Edit</a></strong>
         <ul class="detail-box">
         {% for detail in experience.detail_set.all %}
             <li>{{ detail.description }}<a href="{% url 'detail_delete' detail.id %}"> Delete</a></li> 
             {% for skill in detail.skillused_set.all %}
-                <em>{{ skill.name }},</em><a href="{% url 'skill_used_delete' skill.id %}">-</a>
+                <em>{{ skill.name }},</em><a href="{% url 'skill_used_delete' skill.id %}">-</a><a href="{% url 'skill_used_update' skill.id %}">&</a>
             {% endfor %}
+            <a href="{% url 'skill_used_create' %}">Add a Skill Used</a>
         {% endfor %}
+        <a href="{% url 'detail_create' %}">Add a Detail</a>
        </ul>
     {% endfor %}
+    <a href="{% url 'education_experience_create' %}">Add an experience</a>
 
     <div class="skill-container">
     {% for skill in section.skill_set.all %}
