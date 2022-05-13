@@ -26,7 +26,9 @@ urlpatterns = [
   path('detail/create', views.DetailCreate.as_view(), name='detail_create'),
   path('skill_used/create', views.SkillUsedCreate.as_view(), name='skill_used_create'),
 ## UPDATES
-    path('section/<int:pk>/update/', views.SectionUpdate.as_view(), name='section_update'),
-    path('skill_used/<int:pk>/update/', views.SkillUsedUpdate.as_view(), name='skill_used_update'),
-    path('education_experience/<int:pk>/update/', views.EducationExperienceUpdate.as_view(), name='education_experience_update'),
+  path('section/<int:pk>/update/', views.SectionUpdate.as_view(), name='section_update'),
+  path('skill_used/<int:pk>/update/', views.SkillUsedUpdate.as_view(), name='skill_used_update'),
+  path('education_experience/<int:pk>/update/', views.EducationExperienceUpdate.as_view(), name='education_experience_update'),
+  path('detail/<int:pk>/update/', views.DetailUpdate.as_view(), name='detail_update'),
+  path('skill/<int:pk>/update/', views.SkillUpdate.as_view(), name='skill_update'),
 ]

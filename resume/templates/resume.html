@@ -4,17 +4,17 @@
 <h1>{{ resume.title }}</h1>
 <p>{{ resume.summary }}</p>
 
-{% for section in resume.section_set.all %}  <!-- SECTION has create, edit, delete  -->
+{% for section in resume.section_set.all %}  <!-- SECTION has create, update, delete  -->
 <h3>{{ section.name }}<a href="{% url 'section_delete' section.id %}"> Delete</a><a href="{% url 'section_update' section.id %}"> Edit</a></h3>
-    {% for experience in section.education_experience_set.all|dictsortreversed:"end_date" %} <!-- education_experience has create, delete  -->
+    {% for experience in section.education_experience_set.all|dictsortreversed:"end_date" %} <!-- education_experience has create, update, delete  -->
         <strong>{{ experience.experience_name }} | {{ experience.details }}</strong> <strong class="right"> {{ experience.start_date|date:"M Y - " }}{{ experience.end_date|date:"M Y" }}  
             <a href="{% url 'education_experience_delete' experience.id %}">Delete</a>
         
         </strong><a href="{% url 'education_experience_update' experience.id %}">Edit</a></strong>
         <ul class="detail-box">
-        {% for detail in experience.detail_set.all %}
-            <li>{{ detail.description }}<a href="{% url 'detail_delete' detail.id %}"> Delete</a></li> 
-            {% for skill in detail.skillused_set.all %}
+        {% for detail in experience.detail_set.all %} <!-- DETAIL has create, update, delete  -->
+            <li>{{ detail.description }}<a href="{% url 'detail_delete' detail.id %}"> Delete</a><a href="{% url 'detail_update' detail.id %}"> Edit</a></li> 
+            {% for skill in detail.skillused_set.all %} <!-- SKILLUSED has create, update, delete  -->
                 <em>{{ skill.name }},</em><a href="{% url 'skill_used_delete' skill.id %}">-</a><a href="{% url 'skill_used_update' skill.id %}">&</a>
             {% endfor %}
             <a href="{% url 'skill_used_create' %}">Add a Skill Used</a>
@@ -25,8 +25,8 @@
     <a href="{% url 'education_experience_create' %}">Add an experience</a>
 
     <div class="skill-container">
-    {% for skill in section.skill_set.all %}
-       <div class="skill-box">{{ skill.skill_name }}<a href="{% url 'skill_delete' skill.id %}">-</a></div>
+    {% for skill in section.skill_set.all %} <!-- DETAIL has delete  -->
+       <div class="skill-box">{{ skill.skill_name }}<a href="{% url 'skill_delete' skill.id %}">-</a><a href="{% url 'skill_update' skill.id %}">&</a></div>
     {% endfor %}
     </div>
 

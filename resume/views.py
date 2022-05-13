@@ -77,6 +77,16 @@ class EducationExperienceUpdate(UpdateView):
     fields = '__all__'
     success_url = '/'
 
+class DetailUpdate(UpdateView):
+    model = SkillUsed
+    fields = '__all__'
+    success_url = '/'
+
+class SkillUpdate(UpdateView):
+    model = Skill
+    fields = '__all__'
+    success_url = '/'
+
 #   path('experience/<int:pk>/delete/', views.ExperienceDelete.as_view(), name='experience_delete'),
 
 def home(request):
