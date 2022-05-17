@@ -9,6 +9,7 @@ urlpatterns = [
   path('<int:resume_id>', views.home_resume, name='home_resume'),
   path('projects/', views.projects, name='projects'),
   path('resume/<int:resume_id>/', views.resume_detail, name='detail'),
+  path('accounts/signup/', views.signup, name='signup'),
 
   ## DELETES
   path('section/<int:pk>/delete/', views.SectionDelete.as_view(), name='section_delete'),
@@ -25,10 +26,13 @@ urlpatterns = [
   path('education_experience/create', views.EducationExperienceCreate.as_view(), name='education_experience_create'),
   path('detail/create', views.DetailCreate.as_view(), name='detail_create'),
   path('skill_used/create', views.SkillUsedCreate.as_view(), name='skill_used_create'),
+  path('technology/create', views.TechnologyCreate.as_view(), name='technology_create'),
 ## UPDATES
   path('section/<int:pk>/update/', views.SectionUpdate.as_view(), name='section_update'),
   path('skill_used/<int:pk>/update/', views.SkillUsedUpdate.as_view(), name='skill_used_update'),
   path('education_experience/<int:pk>/update/', views.EducationExperienceUpdate.as_view(), name='education_experience_update'),
   path('detail/<int:pk>/update/', views.DetailUpdate.as_view(), name='detail_update'),
   path('skill/<int:pk>/update/', views.SkillUpdate.as_view(), name='skill_update'),
+  path('technology/<int:pk>/update/', views.TechnologyUpdate.as_view(), name='technology_update'),
+  path('project/<int:pk>/update/', views.ProjectUpdate.as_view(), name='project_update'),
 ]

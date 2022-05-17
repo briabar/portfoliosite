@@ -2,88 +2,108 @@ from django.shortcuts import render, HttpResponse, redirect
 from .models import Resume, Link, Section, Skill, Education_Experience, Detail, Technology, SkillUsed, Project
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import SectionForm
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class SectionDelete(DeleteView):
+class SectionDelete(LoginRequiredMixin, DeleteView):
     model = Section
     success_url = '/'
 
-class SectionUpdate(UpdateView):
+class SectionUpdate(LoginRequiredMixin, UpdateView):
     model = Section
     fields = '__all__'
     success_url = '/'
 
-class DetailDelete(DeleteView):
+class DetailDelete(LoginRequiredMixin, DeleteView):
     model = Detail
     success_url = '/'
 
-class SkillUsedDelete(DeleteView):
+class SkillUsedDelete(LoginRequiredMixin, DeleteView):
     model = SkillUsed
     success_url = '/'
 
-class SkillDelete(DeleteView):
+class SkillDelete(LoginRequiredMixin, DeleteView):
     model = Skill
     success_url = '/'
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
-class TechnologyDelete(DeleteView):
+class TechnologyDelete(LoginRequiredMixin, DeleteView):
     model = Technology
     success_url = '/'
 
-class ProjectDelete(DeleteView):
+class ProjectDelete(LoginRequiredMixin, DeleteView):
     model = Project
     success_url = '/'
 
-class EducationExperienceDelete(DeleteView):
+class EducationExperienceDelete(LoginRequiredMixin, DeleteView):
     model = Education_Experience
     success_url = '/'
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
-class EducationExperienceCreate(CreateView):
+class EducationExperienceCreate(LoginRequiredMixin, CreateView):
     model = Education_Experience
     fields = '__all__'
     success_url = '/'
 
-class ResumeCreate(CreateView):
+class ResumeCreate(LoginRequiredMixin, CreateView):
     model = Resume
     fields = '__all__'
     success_url = '/'
 
-class SectionCreate(CreateView):
+class SectionCreate(LoginRequiredMixin, CreateView):
     model = Section
     fields = '__all__'
     success_url = '/'
 
-class DetailCreate(CreateView):
+class DetailCreate(LoginRequiredMixin, CreateView):
     model = Detail
     fields = '__all__'
     success_url = '/'
 
-class SkillUsedCreate(CreateView):
+class SkillUsedCreate(LoginRequiredMixin, CreateView):
     model = SkillUsed
     fields = '__all__'
     success_url = '/'
 
-class SkillUsedUpdate(UpdateView):
+class SkillUsedUpdate(LoginRequiredMixin, UpdateView):
     model = SkillUsed
     fields = '__all__'
     success_url = '/'
 
-class EducationExperienceUpdate(UpdateView):
+class TechnologyCreate(LoginRequiredMixin, CreateView):
+    model = Technology
+    fields = '__all__'
+    success_url = '/'
+
+class EducationExperienceUpdate(LoginRequiredMixin, UpdateView):
     model = Education_Experience
     fields = '__all__'
     success_url = '/'
 
-class DetailUpdate(UpdateView):
+class DetailUpdate(LoginRequiredMixin, UpdateView):
     model = SkillUsed
     fields = '__all__'
     success_url = '/'
 
-class SkillUpdate(UpdateView):
+class SkillUpdate(LoginRequiredMixin, UpdateView):
     model = Skill
+    fields = '__all__'
+    success_url = '/'
+
+class TechnologyUpdate(LoginRequiredMixin, UpdateView):
+    model = Technology
+    fields = '__all__'
+    success_url = '/'
+
+class ProjectUpdate(LoginRequiredMixin, UpdateView):
+    model = Project
     fields = '__all__'
     success_url = '/'
 
@@ -107,6 +127,21 @@ def resume_detail(request, resume_id):
         'resume': resume
     })
 
+def signup(request):
+    error_message = ""
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+
+            user = form.save()
+            login(request, user)
+            return redirect('index')
+        else:
+            error_message = 'Invalid Credentials'
+
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'registration/signup.html', context)
 # def add_section(request, resume_id):
 #   form = SectionForm(request.POST)
 #   # validate the form
