@@ -1,0 +1,159 @@
+
+* {
+  /* border: solid black 1px; */
+  /* background-color: aquamarine; */
+}
+
+body {
+  /* text-align: center; */
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-content: stretch;
+}
+
+.navbar-fixed {
+
+  background-color: #4D774E;
+
+}
+
+.nav-wrapper {
+  width: 100%;
+  margin-top: 0px;
+  max-height: 31px;
+  display: grid;
+  align-items: center;
+  text-decoration: none;
+  grid-auto-columns: minmax(1, 1fr);
+  grid-auto-flow: column;
+  justify-content: space-between;
+  align-items: start;
+  background-image: linear-gradient(to right, #4D774E, #164A41);
+    
+
+}
+
+.right-nav {
+  float: right;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  max-height: 31px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  background-color: #164A41;
+  /* text-decoration: none; */
+  color: #9DC88D;
+  
+}
+
+.right-nav  li {
+  border-left: solid 1px #9DC88D;
+  border-right: solid 1px #9DC88D;
+  padding: 11px 11px;
+  height: 9px;
+  text-align: center;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+}
+
+.right-nav  a:link {
+  text-decoration: none;
+  color: #9DC88D;
+}
+
+.right-nav  a:visited {
+  text-decoration: none;
+  color: #4D774E;
+}
+
+/* .right-nav  a:hover {
+  text-decoration: none;
+  color:#164A41
+} */
+.right-nav  li:hover > a{
+  background-color: #9DC88D;
+  color:#164A41
+
+}
+
+.right-nav  li:hover {
+  background-color: #9DC88D;
+  color:#164A41
+
+}
+
+.left-nav {
+  list-style-type: none;
+  /* display: grid; */
+  margin: 0;
+  max-height: 100%;
+  padding-right: 30px;
+  background-color: #164A41;
+  
+}
+
+.left-nav::after {
+  /* width: 0;
+  height: 0; */
+  border-top: 100px solid red;
+  border-right: 100px solid transparent;
+}
+
+.left-brand {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 0px 16px 0px 16px;
+
+
+}
+
+.left-nav a:link {
+  text-decoration: none;
+  color: #F1B24A;
+}
+
+.left-nav a:visited {
+  text-decoration: none;
+  color: #F1B24A;
+}
+.left-nav a:hover {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.brand-logo {
+  font-size: 27px;
+
+}
+
+/* .right > li {
+  justify-content: flex-start;
+} */
+
+.skill-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.container {
+  width: 80vw;
+  margin-left: 10vw;
+}
+
+.left-buf {
+  width: 10vw;
+  background-color: #164A41;
+}
+
+.right {
+  float: right;
+}
+
+.detail-box {
+  /* style the details box */
+}
