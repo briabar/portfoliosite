@@ -8,6 +8,10 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+# class ResumeDelete(LoginRequiredMixin, DeleteView):
+#     model = Section
+#     success_url = '/'
+
 class SectionDelete(LoginRequiredMixin, DeleteView):
     model = Section
     success_url = '/'
@@ -67,6 +71,16 @@ class DetailCreate(LoginRequiredMixin, CreateView):
     fields = '__all__'
     success_url = '/'
 
+class ProjectCreate(LoginRequiredMixin, CreateView):
+    model = Project
+    fields = '__all__'
+    success_url = '/'
+
+class SkillCreate(LoginRequiredMixin, CreateView):
+    model = Skill
+    fields = '__all__'
+    success_url = '/'
+
 class SkillUsedCreate(LoginRequiredMixin, CreateView):
     model = SkillUsed
     fields = '__all__'
@@ -82,13 +96,18 @@ class TechnologyCreate(LoginRequiredMixin, CreateView):
     fields = '__all__'
     success_url = '/'
 
+class ResumeUpdate(LoginRequiredMixin, UpdateView):
+    model = Resume
+    fields = '__all__'
+    success_url = '/'
+
 class EducationExperienceUpdate(LoginRequiredMixin, UpdateView):
     model = Education_Experience
     fields = '__all__'
     success_url = '/'
 
 class DetailUpdate(LoginRequiredMixin, UpdateView):
-    model = SkillUsed
+    model = Detail
     fields = '__all__'
     success_url = '/'
 
