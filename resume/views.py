@@ -130,7 +130,14 @@ class ProjectUpdate(LoginRequiredMixin, UpdateView):
 
 def home(request):
     resume = Resume.objects.get(name='Brian Baron')
-    return render(request, 'resume.html', {'resume': resume})
+    if resume:
+        return render(request, 'resume.html', {'resume': resume})
+    else: 
+        return render(request, 'resume.html', {'resume': {
+            'name' : 'No Resume Found',
+            'title' : 'No Resume Found',
+            'summary' : 'Make a new resume!'
+        }})
 
 def home_resume(request, resume_id):
     resume = Resume.objects.get(id=resume_id)
