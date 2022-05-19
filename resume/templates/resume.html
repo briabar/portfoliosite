@@ -62,7 +62,7 @@
     </div>
 
     {% for project in section.project_set.all %}
-        <strong><a href="{{ project.href }}">{{ project.name }}, {{ project.description }}</a></strong>
+        <strong><a href="{{ project.href }}">{{ project.name }}, {{ project.description }}</a></strong><br />
         {% if user.is_authenticated %}
         <a href="{% url 'project_delete' project.id %}">Delete</a>
         <a href="{% url 'project_update' project.id %}">edit</a><br>
@@ -77,8 +77,9 @@
         {% endfor %}
         {% if user.is_authenticated %}
         <a href="{% url 'technology_create' %}">Add a Technology</a>
+        <br />
         {% endif %}
-        <br>
+        <br />
     {% endfor %}
     <a href="{% url 'project_create' %}">Add a Project</a>
 {% endfor %}
