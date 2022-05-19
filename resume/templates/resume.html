@@ -77,8 +77,8 @@
         {% endfor %}
         {% if user.is_authenticated %}
         <a href="{% url 'technology_create' %}">Add a Technology</a>
-        <br />
         {% endif %}
+        <br />
         <br />
     {% endfor %}
     {% if user.is_authenticated %}
