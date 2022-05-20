@@ -168,14 +168,7 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
-# def add_section(request, resume_id):
-#   form = SectionForm(request.POST)
-#   # validate the form
-#   if form.is_valid():
-#     # don't save the form to the db until it
-#     # has the cat_id assigned
-#     new_section = form.save(commit=False)
-#     new_section.resume_id = resume_id
-#     new_section.save()
 
-#   return redirect('detail', resume_id=resume_id)
+def projects(request, resume_id):
+        resume = Resume.objects.get(id=resume_id)
+        return render(request, 'projects.html', {'resume': resume})

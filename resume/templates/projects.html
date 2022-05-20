@@ -1,6 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Projects Page</h1>
-
+<h1>Some of my projects</h1>
+{% for section in resume.section_set.all %} 
+    {% for project in section.project_set.all %}
+        <h3><a href="{{ project.href }}">{{ project.name }}, {{ project.description }}</a></h3>
+        {% if user.is_authenticated %}
+        <a href="{% url 'project_delete' project.id %}">Delete</a>
+        <a href="{% url 'project_update' project.id %}">edit</a><br>
+        {% endif %}
+        {% for tech in project.technology_set.all %}
+            <em>{{ tech.name }},</em>
+            {% if user.is_authenticated %}
+            <a href="{% url 'technology_delete' tech.id %}">-</a>
+            <a href="{% url 'technology_update' tech.id %}">&</a>
+            {% endif %}
+        {% endfor %}
+        <br />
+        {% if project.image_link %}
+            <img src="{{ project.image_link }}">
+        {% endif %}
+        <p class='expanded'>
+            {% if project.expanded %}
+              {{ project.expanded }}
+            {% endif %}
+        </p>
+    {% if user.is_authenticated %}
+        <a href="{% url 'technology_create' %}">Add a Technology</a>
+    {% endif %}
+    <br />
+    <br />
+    {% endfor %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'project_create' %}">Add a Project</a>
+    {% endif %}
+{% endfor %}
 {% endblock %}

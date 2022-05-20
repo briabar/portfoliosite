@@ -71,7 +71,9 @@ class Project(models.Model):
     name = models.CharField(max_length=100)
     href = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
+    expanded = models.CharField(max_length=2000, null=True, blank=True)
     section = models.ForeignKey(Section, on_delete=models.CASCADE, null=True)
+    image_link = models.CharField(max_length=300, null=True, blank=True)
     def __str__(self):
         return self.name
 

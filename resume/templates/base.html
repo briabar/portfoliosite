@@ -6,7 +6,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Brian F, Baron</title>
+  {% if resume %}
+  <title>{{ resume.name }}</title>
+  {% endif %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -20,11 +22,12 @@
           {% for link in resume.link_set.all %}
           <li><a href="{{ link.href }}">{{ link.name }}</a></li>
           {% endfor %}
-          <li><a href="/projects">Projects</a></li>
+          {% if resume %}
+          <li><a href="{% url 'projects' resume.id %}"">Projects</a></li>
+          {% endif %}
           {% if user.is_authenticated %}
           <li><a href="{% url 'logout' %}?next=/"> Logout</a></li>
           {% else %}
-          <li><a href="{% url 'signup' %}">Sign Up</a></li>
           <li><a href="{% url 'login' %}?next=/">Log In</a></li>
           {% endif %}
         </ul>
@@ -38,7 +41,7 @@
   </main>
 
   <footer class="page-footer">
-    <div class="right">Brian Baron, &copy; Computer Scientist &nbsp;</div>
+    <div class="right">{{ resume.name }}, &copy; {{ resume.title }} &nbsp;</div>
   </footer>
 </body>
 </html>
